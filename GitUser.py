@@ -1,7 +1,7 @@
 import urllib.request
 import json
 
-auth = "?access_token=9e0db57b4340ac22ed6e689ca9380b16416d119a"
+auth = "?access_token=TOKEN"
 
 class User:
 	def __init__(self, username):
