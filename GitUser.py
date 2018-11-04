@@ -1,7 +1,8 @@
 import urllib.request
 import json
 
-auth = "?access_token=TOKEN"
+lines = [line.rstrip('\n') for line in open("token.txt")]
+auth = lines[0]
 
 class User:
 	def __init__(self, username):
