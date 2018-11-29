@@ -1,0 +1,7 @@
+{"features":[{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Dublin, Ireland", "coordinates": [53.3498053,-6.2603097]}},
+{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Dublin, Ireland", "coordinates": [53.3498053,-6.2603097]}},
+{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Dublin", "coordinates": [53.3498053,-6.2603097]}},
+{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Dublin, Ireland", "coordinates": [53.3498053,-6.2603097]}},
+{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Dublin", "coordinates": [53.3498053,-6.2603097]}},
+{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Ireland", "coordinates": [53.1423672,-7.692053599999999]}},
+{"type":"Feature","geometry": {"type": "Point", "name": "Dublin", "coordinates": [53.3498053,-6.2603097]},"geometryto": {"type" : "Point","name": "Dublin, Ireland", "coordinates": [53.3498053,-6.2603097]}}]}

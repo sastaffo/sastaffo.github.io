@@ -1,15 +1,24 @@
 import urllib.request
 import json
 
+from helper import Geocoder
+from helper import JSONBuilder
+
 lines = [line.rstrip('\n') for line in open("token.txt")]
 auth = lines[0]
+
+geocoder = Geocoder()
+jsonb = JSONBuilder()
+
 
 class User:
 	def __init__(self, username):
 		self.username = username
 		self.location = None
+		self.location_tuple = (0,0)
 		self.followers = []
-		self.fols_2nd_degree = []
+		self.fols_2nd_degree = [] # array of tuples: (followed, follower)
+		self.tuples_list = [] # array of tuples: (loc1,lat1,lng1,loc2,lat2,lng2)
 	# END init
 
 	def get_location(self):
@@ -18,13 +27,9 @@ class User:
 		with urllib.request.urlopen(req) as resp:
 			s = resp.read()
 		user_json = json.loads(s)
-		#try:
-		#	message = user_json["message"]
-		#	print(message)
-		#	return
-		#except:
 		self.location = user_json["location"]
-		# END try
+		if self.location is not None:
+			self.location_tuple = geocoder.get_latlng(self.location)
 	# END get_location
 
 	def get_followers(self):
@@ -33,18 +38,16 @@ class User:
 		with urllib.request.urlopen(req) as resp:
 			s = resp.read()
 		fol_list = json.loads(s)
-		#try:
-		#	message = fol_list["message"]
-		#	print(message)
-		#	return
-		#except:
+
 		for fol_json in fol_list:
 			name = fol_json["login"]
 			u = User(name)
 			u.get_location()
-			if u.location is not None:
+			if u.location_tuple != (0,0):
 				self.followers.append(u)
+				print('.', end='') # prints dots to show progress
 		# END for
+		self.makelist()
 	# END get_followers
 
 	def get_2nd_deg_fols(self):
@@ -52,18 +55,37 @@ class User:
 			f.get_followers()
 			for f2 in f.followers:
 				self.fols_2nd_degree.append((f,f2))
+				print('.', end='')
+			# END for
+			for t in f.tuples_list:
+				self.tuples_list.append(t)
+			# END for
+		# END for
+	# END get_2nd_deg_fols
+
+	def get_all(self):
+		self.get_location()
+		if self.location is None:
+			return
+		self.get_followers()
+		self.get_2nd_deg_fols()
+		jsonb.build(self.tuples_list)
+	# END get_all
+
+	def makelist(self):
+		self_tuple = (self.location, self.location_tuple[0], self.location_tuple[1])
+		for u in self.followers:
+			u_tuple = (u.location, u.location_tuple[0], u.location_tuple[1])
+			self.tuples_list.append(self_tuple+u_tuple)
+		# END for
+	# END makelist
 # END User
 
 def main():
-	start = User("sastaffo")
-	start.get_location()
-	print(start.username, ">", start.location)
-	start.get_followers()
-	for f in start.followers:
-		print(f.username, ">", f.location)
-	start.get_2nd_deg_fols()
-	for tuple in start.fols_2nd_degree:
-		print(tuple[0].username, ">", tuple[1].username, ">", tuple[1].location)
+	username = "sastaffo"
+	# lydell is a Swedish software desginer with approx 100 followers
+	start = User(username)
+	start.get_all()
 	# END for
 # END main
 
