@@ -69,7 +69,7 @@ var svg = d3.select("body").append("svg")
             .attr("height", height)
             .on("mousedown", mousedown);
 queue()
-    .defer(d3.json, "world-110.json")
+    .defer(d3.json, "world-110m.json")
     .defer(d3.json, "locations.json")
     .await(ready);
 // draws globe
