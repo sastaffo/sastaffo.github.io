@@ -8,7 +8,7 @@
 .graticule {
   fill: none;
   stroke: black;
-  stroke-width:.5;
+  stroke-width:.2;
   opacity:.2;
 }
 .labels {
@@ -79,7 +79,7 @@ function ready(error, world, places) {
         .attr("cx", "75%")
         .attr("cy", "25%");
       ocean_fill.append("stop").attr("offset", "5%").attr("stop-color", "#fff");
-      ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#ababab");
+      ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#6698FF");
   var globe_highlight = svg.append("defs").append("radialGradient")
         .attr("id", "globe_highlight")
         .attr("cx", "75%")
