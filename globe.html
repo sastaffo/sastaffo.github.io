@@ -42,7 +42,7 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v0.min.js"></script>
-<p>test 005</p>
+<p>test 006</p>
 <script>
 d3.select(window)
     .on("mousemove", mousemove)
@@ -87,10 +87,10 @@ function ready(error, world, places) {
         .attr("cx", "75%")
         .attr("cy", "25%");
       globe_highlight.append("stop")
-        .attr("offset", "5%").attr("stop-color", "#ffd")
+        .attr("offset", "5%").attr("stop-color", "#00FF00")
         .attr("stop-opacity","0.6");
       globe_highlight.append("stop")
-        .attr("offset", "100%").attr("stop-color", "#ba9")
+        .attr("offset", "100%").attr("stop-color", "#00FF00")
         .attr("stop-opacity","0.2");
   var globe_shading = svg.append("defs").append("radialGradient")
         .attr("id", "globe_shading")
