@@ -8,15 +8,19 @@ class Geocoder:
 		self.urlstem = ("https://maps.googleapis.com/maps/api/geocode/json?address=")
 	# END __init__
 
-	def get_latlng(self, location):
+	def get_lnglat(self, location):
 		if location == "": return (0,0)
 
 		location = str.replace(location, " ", "+")
 
 		url = (self.urlstem+location+"&key="+self.key)
 		req = urllib.request.Request(url)
-		with urllib.request.urlopen(req) as resp:
-			s = resp.read()
+		try:
+			with urllib.request.urlopen(req) as resp:
+				s = resp.read()
+		except UnicodeEncodeError as e:
+			return (0,0)
+
 		loc_json = json.loads(s)
 		results = loc_json["results"]
 		status = loc_json["status"]
@@ -25,7 +29,7 @@ class Geocoder:
 			location = geometry["location"]
 			latitude = location["lat"]
 			longitude = location["lng"]
-			return (latitude,longitude)
+			return (longitude,latitude)
 		else: return (0,0)
 	# END get_latlng
 # END Geocoder

@@ -18,7 +18,7 @@ class User:
 		self.location_tuple = (0,0)
 		self.followers = []
 		self.fols_2nd_degree = [] # array of tuples: (followed, follower)
-		self.tuples_list = [] # array of tuples: (loc1,lat1,lng1,loc2,lat2,lng2)
+		self.tuples_list = [] # array of tuples: (loc1,lng1,lat1,loc2,lng2,lat2)
 	# END init
 
 	def get_location(self):
@@ -29,7 +29,7 @@ class User:
 		user_json = json.loads(s)
 		self.location = user_json["location"]
 		if self.location is not None:
-			self.location_tuple = geocoder.get_latlng(self.location)
+			self.location_tuple = geocoder.get_lnglat(self.location)
 	# END get_location
 
 	def get_followers(self):
@@ -68,7 +68,7 @@ class User:
 		if self.location is None:
 			return
 		self.get_followers()
-		self.get_2nd_deg_fols()
+		#self.get_2nd_deg_fols()
 		jsonb.build(self.tuples_list)
 	# END get_all
 
@@ -82,7 +82,7 @@ class User:
 # END User
 
 def main():
-	username = "sastaffo"
+	username = "aforemny"
 	# lydell is a Swedish software desginer with approx 100 followers
 	start = User(username)
 	start.get_all()
