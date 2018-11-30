@@ -42,7 +42,7 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v0.min.js"></script>
-<p>test 008</p>
+<p>test 009</p>
 <script>
 d3.select(window)
     .on("mousemove", mousemove)
@@ -87,10 +87,10 @@ function ready(error, world, places) {
         .attr("cx", "75%")
         .attr("cy", "25%");
       globe_highlight.append("stop")
-        .attr("offset", "5%").attr("stop-color", "#f0f0f0")
+        .attr("offset", "5%").attr("stop-color", "#eeeeee")
         .attr("stop-opacity","0.6");
       globe_highlight.append("stop")
-        .attr("offset", "100%").attr("stop-color", "#f0f0f0")
+        .attr("offset", "100%").attr("stop-color", "#eeeeee")
         .attr("stop-opacity","0.2");
   var globe_shading = svg.append("defs").append("radialGradient")
         .attr("id", "globe_shading")
@@ -100,7 +100,7 @@ function ready(error, world, places) {
         .attr("offset","30%").attr("stop-color", "#f0f0f0")
         .attr("stop-opacity","0")
       globe_shading.append("stop")
-        .attr("offset","100%").attr("stop-color", "#F62817")
+        .attr("offset","100%").attr("stop-color", "#cccccc")
         .attr("stop-opacity","0.3")
   var drop_shadow = svg.append("defs").append("radialGradient")
         .attr("id", "drop_shadow")
