@@ -34,7 +34,7 @@ body {
     <br>a location set and create a list of tuples mapping their location to X's and vice versa.
     <br>As a SuperUser, X's second degree followers will also be retrieved, ie, the users that follow X's
     <br>followers.
-    <br>The program interacts with the github API in many of these functions, getting the user's location
+    <br>The program interacts with the github API in two of these functions, getting the user's location
     <br><i>get_location()</i> and a list of their followers <i>get_followers()</i>.
     <br><i>makelist()</i> generates the list of tuples of a user's location to and from each of their
     <br>followers' locations.
@@ -44,6 +44,7 @@ body {
   <h4>Helper.py:</h4>
   <p>
     helper.py contains 3 classes designed to help with gituser's functionality.
+    <br>
     <br><b>Geocoder:</b> uses the google maps API to process user's locations and return a longitude and
     <br>latitude coordinate tuple. If the location cannot be found, either because of a unicode error or
     <br>because the API cannot find a location, the function returns (0,0).
