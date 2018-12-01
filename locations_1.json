@@ -344,5 +344,5 @@
 {"type":"Feature","geometry": {"type": "Point", "name": "Cairo , Egypt", "coordinates": [31.2357116,30.0444196]},"geometryto": {"type" : "Point","name": "Rotterdam", "coordinates": [4.4777326,51.9244201]}},
 {"type":"Feature","geometry": {"type": "Point", "name": "Cairo , Egypt", "coordinates": [31.2357116,30.0444196]},"geometryto": {"type" : "Point","name": "Everywhere", "coordinates": [-84.3640829,33.7589188]}},
 {"type":"Feature","geometry": {"type": "Point", "name": "Cairo , Egypt", "coordinates": [31.2357116,30.0444196]},"geometryto": {"type" : "Point","name": "Canada ", "coordinates": [-106.346771,56.130366]}},
+{"type":"Feature","geometry": {"type" : "Point","name": "Mauritius", "coordinates": [57.55215200000001,-20.348404]},"geometryto": {"type": "Point", "name": "Bangladesh", "coordinates": [90.356331,23.684994]}},
 {"type":"Feature","geometry": {"type": "Point", "name": "Cairo , Egypt", "coordinates": [31.2357116,30.0444196]},"geometryto": {"type" : "Point","name": "Galle, Sri Lanka", "coordinates": [80.2209773,6.0535185]}}]}
-{"type":"Feature","geometry": {"type" : "Point","name": "San Diego", "coordinates": [-117.1610838,32.715738]},"geometryto": {"type": "Point", "name": "Stockholm", "coordinates": [18.0685808,59.32932349999999]}},
