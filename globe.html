@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style>
 .land {
-  fill: #999;
+  fill: #B5EAAA;
   stroke-opacity: 1;
 }
 .graticule {
@@ -18,16 +18,16 @@
     display:none;
 }
 .noclicks { pointer-events:none; }
-.point {  opacity:.6; }
+.point {  opacity:.1; }
 .arcs {
   opacity:.8;
-  stroke: red;
-  stroke-width: .5;
+  stroke: #E9AB17;
+  stroke-width: .3;
 }
 .flyers {
-  opacity: .0;
-  stroke: green;
-  stroke-width: 1;
+  opacity: 0;
+  stroke: #306EFF;
+  stroke-width: .5;
 }
 .arc, .flyer {
   stroke-linejoin: round;
@@ -70,7 +70,7 @@ var svg = d3.select("body").append("svg")
             .on("mousedown", mousedown);
 queue()
     .defer(d3.json, "world-110m.json")
-    .defer(d3.json, "locations_2.json")
+    .defer(d3.json, "locations_1.json")
     .await(ready);
 // draws globe
 function ready(error, world, places) {
@@ -78,27 +78,30 @@ function ready(error, world, places) {
         .attr("id", "ocean_fill")
         .attr("cx", "75%")
         .attr("cy", "25%");
-      ocean_fill.append("stop").attr("offset", "5%").attr("stop-color", "#fff");
-      ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#ababab");
+  // ocean highlight and lowlight
+      ocean_fill.append("stop").attr("offset", "5%").attr("stop-color", "#70A5FF");
+      ocean_fill.append("stop").attr("offset", "100%").attr("stop-color", "#6698FF");
   var globe_highlight = svg.append("defs").append("radialGradient")
         .attr("id", "globe_highlight")
         .attr("cx", "75%")
         .attr("cy", "25%");
+  // globe highlight
       globe_highlight.append("stop")
-        .attr("offset", "5%").attr("stop-color", "#ffd")
+        .attr("offset", "5%").attr("stop-color", "#eeeeee")
         .attr("stop-opacity","0.6");
       globe_highlight.append("stop")
-        .attr("offset", "100%").attr("stop-color", "#ba9")
+        .attr("offset", "100%").attr("stop-color", "#eeeeee")
         .attr("stop-opacity","0.2");
   var globe_shading = svg.append("defs").append("radialGradient")
         .attr("id", "globe_shading")
         .attr("cx", "55%")
         .attr("cy", "45%");
+  // globe shadows
       globe_shading.append("stop")
-        .attr("offset","30%").attr("stop-color", "#fff")
+        .attr("offset","30%").attr("stop-color", "#cccccc")
         .attr("stop-opacity","0")
       globe_shading.append("stop")
-        .attr("offset","100%").attr("stop-color", "#505962")
+        .attr("offset","100%").attr("stop-color", "#cccccc")
         .attr("stop-opacity","0.3")
   var drop_shadow = svg.append("defs").append("radialGradient")
         .attr("id", "drop_shadow")
@@ -124,7 +127,6 @@ function ready(error, world, places) {
     .attr("r", proj.scale())
     .attr("class", "noclicks")
     .style("fill", "url(#ocean_fill)");
-
   svg.append("path")
     .datum(topojson.object(world, world.objects.land))
     .attr("class", "land noclicks")
@@ -151,7 +153,6 @@ function ready(error, world, places) {
       target: a.geometryto.coordinates
     });
   });
-
   // build geoJSON features from links array
   links.forEach(function(e,i,a) {
     var feature =   { "type": "Feature", "geometry": { "type": "LineString", "coordinates": [e.source,e.target] }}
@@ -181,7 +182,6 @@ function flying_arc(pts) {
 function refresh() {
   svg.selectAll(".land").attr("d", path);
   svg.selectAll(".point").attr("d", path);
-
   svg.selectAll(".arc").attr("d", path)
     .attr("opacity", function(d) {
         return fade_at_edge(d)
@@ -205,10 +205,8 @@ function fade_at_edge(d) {
     start = d.geometry.coordinates[0];
     end = d.geometry.coordinates[1];
   }
-
   var start_dist = 1.57 - arc.distance({source: start, target: centerPos}),
       end_dist = 1.57 - arc.distance({source: end, target: centerPos});
-
   var fade = d3.scale.linear().domain([-.1,0]).range([0,.1])
   var dist = start_dist < end_dist ? start_dist : end_dist;
   return 1
