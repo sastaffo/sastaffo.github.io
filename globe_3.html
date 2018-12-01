@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<head>
+<title>Globe 2</title>
+    <style>
+body {
+    background-image: url("sky.png");
+}
+</style>
+  <link rel="stylesheet" type="text/css" href="custom.css">
+<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+</head>
 <meta charset="utf-8">
 <style>
 .land {
@@ -42,6 +53,12 @@
 </style>
 
 <body>
+  <h1>Globe 3</h1>
+  <a href="https://sastaffo.github.io/index.html"><p>Back</p></a>
+  <p>This globe graphically shows <i>joan2937</i>'s followers' locations in relation to his own location.</p>
+    <p>It also shows the followers of his followers.</p>
+  <p>The opacity of the dot on the globe shows the traffic through that location.</p>
+  <hr>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v0.min.js"></script>
@@ -88,7 +105,7 @@ function ready(error, world, places) {
         .attr("id", "globe_highlight")
         .attr("cx", "75%")
         .attr("cy", "25%");
-  // globe highlight
+  // globe highlight 
       globe_highlight.append("stop")
         .attr("offset", "5%").attr("stop-color", "#eeeeee")
         .attr("stop-opacity","0.6");
@@ -130,7 +147,6 @@ function ready(error, world, places) {
     .attr("r", proj.scale())
     .attr("class", "noclicks")
     .style("fill", "url(#ocean_fill)");
-
   svg.append("path")
     .datum(topojson.object(world, world.objects.land))
     .attr("class", "land noclicks")
@@ -157,7 +173,6 @@ function ready(error, world, places) {
       target: a.geometryto.coordinates
     });
   });
-
   // build geoJSON features from links array
   links.forEach(function(e,i,a) {
     var feature =   { "type": "Feature", "geometry": { "type": "LineString", "coordinates": [e.source,e.target] }}
@@ -187,7 +202,6 @@ function flying_arc(pts) {
 function refresh() {
   svg.selectAll(".land").attr("d", path);
   svg.selectAll(".point").attr("d", path);
-
   svg.selectAll(".arc").attr("d", path)
     .attr("opacity", function(d) {
         return fade_at_edge(d)
@@ -211,10 +225,8 @@ function fade_at_edge(d) {
     start = d.geometry.coordinates[0];
     end = d.geometry.coordinates[1];
   }
-
   var start_dist = 1.57 - arc.distance({source: start, target: centerPos}),
       end_dist = 1.57 - arc.distance({source: end, target: centerPos});
-
   var fade = d3.scale.linear().domain([-.1,0]).range([0,.1])
   var dist = start_dist < end_dist ? start_dist : end_dist;
   return 1
@@ -249,3 +261,4 @@ function mouseup() {
   }
 }
 </script>
+  <hr>
