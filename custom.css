@@ -5,5 +5,5 @@ p, div, a {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
 }
 body { 
-    background-image: url("funky-lines.png") repeat 0 0;
+    background-image: url("funky-lines.png");
 }
