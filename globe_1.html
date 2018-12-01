@@ -42,7 +42,7 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://d3js.org/queue.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v0.min.js"></script>
-<p>test 010</p>
+<p>test 011</p>
 <script>
 d3.select(window)
     .on("mousemove", mousemove)
@@ -71,7 +71,7 @@ var svg = d3.select("body").append("svg")
             .on("mousedown", mousedown);
 queue()
     .defer(d3.json, "world-110m.json")
-    .defer(d3.json, "locations.json")
+    .defer(d3.json, "locations_1.json")
     .await(ready);
 // draws globe
 function ready(error, world, places) {
