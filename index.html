@@ -25,14 +25,55 @@ body {
   <h2>Code:</h2>
   <h4>GitUser.py:</h4>
   <p>
-    GitUser takes in a password and a username of user X. If user X has a location set on github,
-    <br>the program will find all of X's followers who also have a location set and create a list of tuples
-    <br>mapping their location to X's and vice versa.
-    <br>The program interacts with the github API in multiple of these functions, getting the user's location and list of followers.
+    GitUser.py contains a main function and two classes, User and SuperUser, which inherits from User.
+    <br>The main takes in a password and a username of git user X, which are used to create a SuperUser.
     <br>
+    <br>In the initialisation of the SuperUser, the program will use the supplied password to decode the
+    <br>google and github ciphers, by calling a decoder.
+    <br>If user X has a location set on github, the program will find all of X's followers who also have
+    <br>a location set and create a list of tuples mapping their location to X's and vice versa.
+    <br>As a SuperUser, X's second degree followers will also be retrieved, ie, the users that follow X's
+    <br>followers.
+    <br>The program interacts with the github API in many of these functions, getting the user's location
+    <br><i>get_location()</i> and a list of their followers <i>get_followers()</i>.
+    <br><i>makelist()</i> generates the list of tuples of a user's location to and from each of their
+    <br>followers' locations.
+    <br><i>get_all()</i> calls all of the necessary functions to generate the JSON file.
   </p>
+
   <h4>Helper.py:</h4>
   <p>
-    helper.py contains 3 classes designed to help with gituser's functionality. 
+    helper.py contains 3 classes designed to help with gituser's functionality.
+    <br><b>Geocoder:</b> uses the google maps API to process user's locations and return a longitude and
+    <br>latitude coordinate tuple. If the location cannot be found, either because of a unicode error or
+    <br>because the API cannot find a location, the function returns (0,0).
+    <br>
+    <br><b>JSONBuilder:</b> builds a JSON file from the list of location tuples gathered by the github
+    <br>and google maps APIs. This JSON locations file will be used by the d3js code to draw lines on
+    <br>the globe.
+    <br>
+    <br><b>Decode:</b> unencrypts the github and google maps authorisation keys using the password taken
+    <br>from the program user. This code was adapted from
+    <a href="https://stackoverflow.com/questions/2490334/">stackoverflow.com/questions/2490334</a>
+  </p>
+
+  <h4>Globe_X.html</h4>
+  <p>
+    The 3 globe files are almost identical, except for the username and the locations JSON that is
+    <br>imported.
+    <br>The globe is built on a d3 circle using a publically available list of coastlines to
+    <br>simulate the 3D effect of the globe with the help of additional shading.
+    <br>The javascript code is adapted from
+    <a href="http://bl.ocks.org/dwtkns/4686432">bl.ocks.org/dwtkns/4686432</a>,
+    derived from a d3 example.
+    <br>
+    <br>The script imports the locations_X.JSON file and draws lines from each "geometry" point to
+    <br>each "geometryto" point.
+  </p>
+
+  <h4>Custom.css</h4>
+  <p>
+    This is a small amount of CSS code to make the sastaffo.github.io page more attractive.
+  </p>
 </body>
 </html>
