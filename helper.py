@@ -1,19 +1,19 @@
 import urllib.request
 import json
+import base64
 
 class Geocoder:
 	def __init__(self):
-		lines = [line.rstrip('\n') for line in open("googleAPIkey.txt")]
-		self.key = lines[0]
+		#self.key = googleAPIkey
 		self.urlstem = ("https://maps.googleapis.com/maps/api/geocode/json?address=")
 	# END __init__
 
-	def get_lnglat(self, location):
+	def get_lnglat(self, location, apikey):
 		if location == "": return (0,0)
 
 		location = str.replace(location, " ", "+")
 
-		url = (self.urlstem+location+"&key="+self.key)
+		url = (self.urlstem+location+"&key="+apikey)
 		req = urllib.request.Request(url)
 		try:
 			with urllib.request.urlopen(req) as resp:
@@ -71,12 +71,21 @@ class JSONBuilder:
 		json = (""+self.opener+self.body+self.closer)
 		file.write(json)
 		file.close()
-
+	# END write
 # END JSONBuilder
 
-def main():
-	j = JSONBuilder()
-# END main
+class Decode:
+	def __init__(self, key):
+		self.key = key
+	# END init
 
-if __name__ == '__main__':
-	main()
+	def decode(self, enc):
+		dec = []
+		enc = base64.urlsafe_b64decode(enc).decode()
+		for i in range(len(enc)):
+			key_c = self.key[i % len(self.key)]
+			dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
+			dec.append(dec_c)
+		return "".join(dec)
+	# END decode
+# END Decode
