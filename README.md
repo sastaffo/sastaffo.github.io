@@ -1,2 +1,2 @@
 # Webpage:
-https://sastaffo.github.io/globe.html
+https://sastaffo.github.io/
