@@ -1,3 +1,3 @@
-# sastaffo_rdf.github.io
+# sastaffo.github.io
 
-<a href="http://sastaffo_rdf.github.io/turtle.html"> sastaffo_rdf.github.io/turtle.html </a>
+<a href="http://sastaffo.github.io/index.html"> sastaffo.github.io/index.html </a>
