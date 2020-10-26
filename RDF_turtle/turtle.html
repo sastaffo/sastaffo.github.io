@@ -5,98 +5,114 @@
 </head>
 
 <body>
-	<p># sets up prefixes</p>
+	<p>
+		# sets up prefixes
+		<br>
+		@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+		<br>
+		@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+		<br>
+		@prefix owl: <http://www.w3.org/2002/07/owl#> .
+		<br>
+		@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+	</p>
 
-	<p>@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .</p>
+	<p>
+		@prefix my: <https://sastaffo.github.io/RDF_turtle/turtle.html#> .
+	</p>
 
-	<p>@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .</p>
+	<p>
+		# sets up classes
+		<br>
+		my:Person rdfs:subClassOf foaf:Person .
+		<br>
+		my:Student rdfs:subClassOf my:Person .
+	</p>
 
-	<p>@prefix owl: <http://www.w3.org/2002/07/owl#> .</p>
+	<p>
+		# sets up predicates
+	</p>
 
-	<p>@prefix foaf: <http://xmlns.com/foaf/0.1/>.</p>
+	<p>
+		my:isParentOf a rdf:predicate ;
+		<br>
+		rdfs:isDefinedBy <https://sastaffo.github.io/RDF_turtle/turtle.html#> ;
+		<br>
+		rdfs:label &quot;isParentOf&quot; ;
+		<br>
+		rdfs:comment &quot;Subject is a parent of the Object.&quot; ;
+		<br>
+		rdfs:domain my:Person ; # subject must be type my:person
+		<br>
+		rdfs:range my:Person . # object must be type my:person
+	 </p>
 
-	<p> @prefix my: <my.com/schema#> .</p>
+	<p>
+		my:isChildOf a rdf:predicate ;
+		rdfs:isDefinedBy <https://sastaffo.github.io/RDF_turtle/turtle.html#>;
+		<br>
+		rdfs:label &quot;isChildOf&quot;;
+		<br>
+		rdfs:comment &quot;Subject is a child of the Object.&quot;;
+		<br>
+		rdfs:domain my:Person ;
+		<br>
+		rdfs:range my:Person .
+	</p>
 
-	<p> # sets up classes</p>
-	
-	<p>my:Person rdfs:subClassOf foaf:Person .</p>
+	<p>
+		my:isSiblingOf a rdf:predicate ;
+		<br>
+		rdfs:isDefinedBy <https://sastaffo.github.io/RDF_turtle/turtle.html#> ;
+		<br>
+		rdfs:label &quot;isSiblingOf&quot; ;
+		<br>
+		rdfs:comment &quot;Subject is a sibling of the Object.&quot; ;
+		<br>
+		rdfs:domain my:Person ;
+		<br>
+		rdfs:range my:Person .
+	</p>
 
-	<p>my:Student rdfs:subClassOf my:Person .</p>
+	<p>
+		my:firstName a rdf:predicate ;
+		<br>
+		rdfs:isDefinedBy <https://sastaffo.github.io/RDF_turtle/turtle.html#> ;
+		<br>
+		rdfs:label &quot;firstName&quot; ;
+		<br>
+		rdfs:comment &quot;Subject has first name Object, as String.&quot; ;
+		<br>
+		rdfs:domain my:Person ;
+		<br>
+		rdfs:range rdfs:Literal .
+	</p>
 
-	<p> # sets up predicates</p>
+	<p>
+		my:lastName a rdf:predicate ;
+		<br>
+		rdfs:isDefinedBy <https://sastaffo.github.io/RDF_turtle/turtle.html#> ;
+		<br>
+		rdfs:label &quot;lastName&quot; ;
+		<br>
+		rdfs:comment &quot;Subject has last name Object, as String.&quot; ;
+		<br>
+		rdfs:domain my:Person ;
+		<br>
+		rdfs:range rdfs:Literal .
+	</p>
 
-	<p>my:isParentOf a rdf:predicate ;</p>
-
-	<p> rdfs:isDefinedBy <my.com/schema#> ;</p>
-
-	<p> rdfs:label &quot;isParentOf&quot; ;</p>
-
-	<p> rdfs:comment &quot;Subject is a parent of the Object.&quot; ;</p>
-
-	<p> rdfs:domain my:Person ; # subject must be type my:person</p>
-
-	<p> rdfs:range my:Person . # object must be type my:person</p>
-
-	<p> my:isChildOf a rdf:predicate ;</p>
-
-	<p> rdfs:isDefinedBy <my.com/schema#> ;</p>
-
-	<p> rdfs:label &quot;isChildOf&quot; ;</p>
-
-	<p> rdfs:comment &quot;Subject is a child of the Object.&quot; ;</p>
-
-	<p> rdfs:domain my:Person ;</p>
-
-	<p> rdfs:range my:Person .</p>
-
-	<p> my:isSiblingOf a rdf:predicate ;</p>
-
-	<p> rdfs:isDefinedBy <my.com/schema#> ;</p>
-
-	<p> rdfs:label &quot;isSiblingOf&quot; ;</p>
-
-	<p> rdfs:comment &quot;Subject is a sibling of the Object.&quot; ;</p>
-
-	<p> rdfs:domain my:Person ;</p>
-
-	<p> rdfs:range my:Person .</p>
-
-	<p> my:firstName a rdf:predicate ;</p>
-
-	<p> rdfs:isDefinedBy <my.com/schema#> ;</p>
-
-	<p> rdfs:label &quot;firstName&quot; ;</p>
-
-	<p> rdfs:comment &quot;Subject has first name Object, as String.&quot; ;</p>
-
-	<p> rdfs:domain my:Person ;</p>
-
-	<p> rdfs:range rdfs:Literal .</p>
-
-	<p> my:lastName a rdf:predicate ;</p>
-
-	<p> rdfs:isDefinedBy <my.com/schema#> ;</p>
-
-	<p> rdfs:label &quot;lastName&quot; ;</p>
-
-	<p> rdfs:comment &quot;Subject has last name Object, as String.&quot; ;</p>
-
-	<p> rdfs:domain my:Person ;</p>
-
-	<p> rdfs:range rdfs:Literal .</p>
-
-	<p> my:dateOfBirth a rdf:predicate ;</p>
-
-	<p> rdfs:isDefinedBy <my.com/schema#> ;</p>
-
-	<p> rdfs:label &quot;dateOfBirth&quot; ;</p>
-
-	<p> rdfs:comment &quot;Subject was born Object, as Date.&quot; ;</p>
-
-	<p> rdfs:domain my:Person ;</p>
-
-	<p> rdfs:range rdfs:Literal .</p>
-
-
-
+	<p>
+		my:dateOfBirth a rdf:predicate ;
+		<br>
+		rdfs:isDefinedBy <https://sastaffo.github.io/RDF_turtle/turtle.html#> ;
+		<br>
+		rdfs:label &quot;dateOfBirth&quot; ;
+		<br>
+		rdfs:comment &quot;Subject was born Object, as Date.&quot; ;
+		<br>
+		rdfs:domain my:Person ;
+		<br>
+		rdfs:range rdfs:Literal .
+	</p>
 </body>
