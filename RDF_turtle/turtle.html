@@ -6,12 +6,12 @@
 
 <body>
 	<p>
-		@prefix rdf:	&#60; http://www.w3.org/1999/02/22-rdf-syntax-ns# &#62; .
-		@prefix rdfs:	&#60; http://www.w3.org/2000/01/rdf-schema# &#62; .
-		@prefix owl:	&#60; http://www.w3.org/2002/07/owl# &#62; .
+		@prefix rdf:	&#60; http://www.w3.org/1999/02/22-rdf-syntax-ns
+		@prefix rdfs:	&#60; http://www.w3.org/2000/01/rdf-schema
+		@prefix owl:	&#60; http://www.w3.org/2002/07/owl
 		@prefix foaf:	&#60; http://xmlns.com/foaf/0.1/ &#62; .
 
-		@prefix my:		&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; .
+		@prefix my:		&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
 
 
 		my:Person		rdfs:subClassOf		foaf:Person .
@@ -27,7 +27,7 @@
 
 
 		my:isParentOf	a					rdf:predicate ;
-						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
 						rdfs:label			"isParentOf" ;
 						rdfs:comment		"Subject is a parent of the Object." ;
 						rdfs:domain			my:Person ;
@@ -35,35 +35,35 @@
 
 
 		my:isChildOf	a					rdf:predicate ;
-						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html 
 						rdfs:label			"isChildOf" ;
 						rdfs:comment		"Subject is a child of the Object." ;
 						rdfs:domain			my:Person ;
 						rdfs:range			my:Person .
 
 		my:isSiblingOf	a					rdf:predicate ;
-						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
 						rdfs:label			"isSiblingOf" ;
 						rdfs:comment		"Subject is a sibling of the Object." ;
 						rdfs:domain			my:Person ;
 						rdfs:range			my:Person .
 
 		my:firstName	a					rdf:predicate ;
-						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
 						rdfs:label			"firstName" ;
 						rdfs:comment		"Subject has first name Object, as String." ;
 						rdfs:domain			my:Person , my:Pet;
 						rdfs:range			rdfs:Literal .
 
 		my:lastName		a					rdf:predicate ;
-						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
 						rdfs:label			"lastName" ;
 						rdfs:comment		"Subject has last name Object, as String." ;
 						rdfs:domain			my:Person , my:Pet;
 						rdfs:range			rdfs:Literal .
 
 		my:dateOfBirth	a					rdf:predicate ;
-						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
 						rdfs:label			"dateOfBirth" ;
 						rdfs:comment		"Subject was born Object, as Date." ;
 						rdfs:domain			my:Person, my:Pet ;
@@ -88,7 +88,7 @@
 						rdfs:range			my:Pet .
 
 
-		# Student predicates
+
 		my:isStudentOf	a					rdf:predicate ;
 						rdfs:label			"isStudentOf" ;
 						rdfs:comment		"Subject is a Student at Object." ;
@@ -96,7 +96,7 @@
 						rdfs:range			my:University .
 
 
-		# Location predicates
+
 		my:inCity		a					rdf:predicate ;
 						rdfs:label			"inCity" ;
 						rdfs:comment		"Subject is located in Object." ;
@@ -121,14 +121,14 @@
 						rdfs:domain			my:Location , my:City , my:Country ;
 						rdfs:range			rdfs:Literal .
 
-		# University predicates
+
 		my:fullName		a					rdf:predicate ;
 						rdfs:label			"fullName" ;
 						rdfs:comment		"Subject has full name of Object, as String." ;
 						rdfs:domain			my:University , my:Country ;
 						rdfs:range			rdfs:Literal .
 
-		# Country predicates
+
 		my:hasCity		a					rdf:predicate ;
 						rdfs:label			"hasCity" ;
 						rdfs:comment		"Subject has city Object." ;
@@ -136,16 +136,16 @@
 						rdfs:range			my:City .
 
 
-		# Pet predicates
+
 		my:hasOwner		a					rdf:predicate ;
 						rdfs:label			"hasOwner" ;
 						rdfs:comment		"Subject is owned by Object" ;
 						rdfs:domain			my:Pet ;
 						rdfs:range			my:Person .
 
-		# Rabbit predicates
 
-		# Novel predicates
+
+
 		my:hasAuthor	a					rdf:predicate ;
 						rdfs:label			"hasAuthor" ;
 						rdfs:comment		"Subject was written by Object" ;
