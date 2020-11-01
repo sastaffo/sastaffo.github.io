@@ -3,153 +3,402 @@
   <head>
   	<title>Turtle</title>
   </head>
-
   <body>
   	<p>
-<br> 		@prefix rdf:	&#60; http://www.w3.org/1999/02/22-rdf-syntax-ns
-<br> 		@prefix rdfs:	&#60; http://www.w3.org/2000/01/rdf-schema
-<br> 		@prefix owl:	&#60; http://www.w3.org/2002/07/owl
-<br> 		@prefix foaf:	&#60; http://xmlns.com/foaf/0.1/ &#62; .
+		# sets up prefixes
 <br>
-<br> 		@prefix my:		&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
+		@prefix rdf:	&#60; http://www.w3.org/1999/02/22-rdf-syntax-ns# &#62; .
+<br>
+		@prefix rdfs:	&#60; http://www.w3.org/2000/01/rdf-schema# &#62; .
+<br>
+		@prefix owl:	&#60; http://www.w3.org/2002/07/owl# &#62; .
+<br>
+		@prefix foaf:	&#60; http://xmlns.com/foaf/0.1/ &#62; .
+<br><br>
+		@prefix my:		&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; .
+<br><br><br>
+		# sets up classes
+<br>
+		my:LivingThing	a					rdfs:Class ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"LivingThing" ;
+<br>
+						rdfs:comment		"Subject is a Living Thing." .
+<br><br>
+		my:Place		a					rdfs:Class ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Place" ;
+<br>
+						rdfs:comment		"Subject is a Place." .
+<br><br>
+		my:Novel		a					rdfs:Class ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Novel" ;
+<br>
+						rdfs:comment		"Subject is a Novel." .
+<br><br>
+		my:Person		rdfs:subClassOf		my:LivingThing ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Person" ;
+<br>
+						rdfs:comment		"Subject is a LivingThing:Person." .
+<br><br>
+		my:Student		rdfs:subClassOf		my:Person ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Student" ;
+<br>
+						rdfs:comment		"Subject is a LivingThing:Person:Student." .
+<br><br>
+		my:Location		rdfs:subClassOf		my:Place ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Location" ;
+<br>
+						rdfs:comment		"Subject is a Place:Location." .
+<br><br>
+		my:University	rdfs:subClassOf		my:Location ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"University" ;
+<br>
+						rdfs:comment		"Subject is a Place:Location:University." .
+<br><br>
+		my:House		rdfs:subClassOf		my:Location ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"House" ;
+<br>
+						rdfs:comment		"Subject is a Place:Location:House." .
+<br><br>
+		my:City			rdfs:subClassOf		my:Place ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"City" ;
+<br>
+						rdfs:comment		"Subject is a Place:City." .
+<br><br>
+		my:Country		rdfs:subClassOf		my:Place ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Country" ;
+<br>
+						rdfs:comment		"Subject is a Place:Country." .
+<br><br>
+		my:Pet			rdfs:subClassOf		my:LivingThing ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Pet" ;
+<br>
+						rdfs:comment		"Subject is a LivingThing:Pet." .
+<br><br>
+		my:Rabbit		rdfs:subClassOf		my:Pet ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"Rabbit" ;
+<br>
+						rdfs:comment		"Subject is a LivingThing:Pet:Rabbit." .
+<br><br><br>
+		# sets up predicates
 <br>
 <br>
-<br> 		my:Person		rdfs:subClassOf		foaf:Person .
-<br> 		my:Student		rdfs:subClassOf		my:Person .
-<br> 		my:Location		rdfs:subClassOf		foaf:SpatialThing .
-<br> 		my:City			rdfs:subClassOf		foaf:SpatialThing .
-<br> 		my:Country		rdfs:subClassOf		foaf:SpatialThing .
-<br> 		my:University	rdfs:subClassOf		my:Location .
-<br> 		my:House		rdfs:subClassOf		my:Location .
-<br> 		my:Pet			rdfs:subClassOf		owl:Thing .
-<br> 		my:Rabbit		rdfs:subClassOf		my:Pet .
-<br> 		my:Novel		rdfs:subClassOf		owl:Thing .
+		# LivingThing predicates
 <br>
-<br> 		my:isParentOf	a					rdf:predicate ;
-<br> 						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
-<br> 						rdfs:label			"isParentOf" ;
-<br> 						rdfs:comment		"Subject is a parent of the Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			my:Person .
+		my:dateOfBirth	a					rdf:predicate ;
 <br>
-<br> 		my:isChildOf	a					rdf:predicate ;
-<br> 						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
-<br> 						rdfs:label			"isChildOf" ;
-<br> 						rdfs:comment		"Subject is a child of the Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			my:Person .
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
 <br>
-<br> 		my:isSiblingOf	a					rdf:predicate ;
-<br> 						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
-<br> 						rdfs:label			"isSiblingOf" ;
-<br> 						rdfs:comment		"Subject is a sibling of the Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			my:Person .
+						rdfs:label			"dateOfBirth" ;
 <br>
-<br> 		my:firstName	a					rdf:predicate ;
-<br> 						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
-<br> 						rdfs:label			"firstName" ;
-<br> 						rdfs:comment		"Subject has first name Object, as String." ;
-<br> 						rdfs:domain			my:Person , my:Pet;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:comment		"Subject was born Object, as Date." ;
 <br>
-<br> 		my:lastName		a					rdf:predicate ;
-<br> 						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
-<br> 						rdfs:label			"lastName" ;
-<br> 						rdfs:comment		"Subject has last name Object, as String." ;
-<br> 						rdfs:domain			my:Person , my:Pet;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:domain			my:LivingThing ;
 <br>
-<br> 		my:dateOfBirth	a					rdf:predicate ;
-<br> 						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html
-<br> 						rdfs:label			"dateOfBirth" ;
-<br> 						rdfs:comment		"Subject was born Object, as Date." ;
-<br> 						rdfs:domain			my:Person, my:Pet ;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:range			rdfs:Literal .
+<br><br>
+		my:firstName	a					rdf:predicate ;
 <br>
-<br> 		my:isAlumOf		a					rdf:predicate ;
-<br> 						rdfs:label			"isAlumOf" ;
-<br> 						rdfs:comment		"Subject is an alumnus of Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			rdfs:University .
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
 <br>
-<br> 		my:livesIn		a					rdf:predicate ;
-<br> 						rdfs:label			"livesIn" ;
-<br> 						rdfs:comment		"Subject lives in Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			my:House .
+						rdfs:label			"firstName" ;
 <br>
-<br> 		my:hasPet		a					rdf:predicate ;
-<br> 						rdfs:label			"hasPet" ;
-<br> 						rdfs:comment		"Subject has pet Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			my:Pet .
+						rdfs:comment		"Subject has first name Object, as String." ;
 <br>
-<br> 		my:isStudentOf	a					rdf:predicate ;
-<br> 						rdfs:label			"isStudentOf" ;
-<br> 						rdfs:comment		"Subject is a Student at Object." ;
-<br> 						rdfs:domain			my:Person ;
-<br> 						rdfs:range			my:University .
+						rdfs:domain			my:LivingThing;
 <br>
-<br> 		my:inCity		a					rdf:predicate ;
-<br> 						rdfs:label			"inCity" ;
-<br> 						rdfs:comment		"Subject is located in Object." ;
-<br> 						rdfs:domain			my:Location ;
-<br> 						rdfs:range			my:City .
+						rdfs:range			rdfs:Literal .
+<br><br><br>
+		# Person predicates
 <br>
-<br> 		my:inCountry	a					rdf:predicate ;
-<br> 						rdfs:label			"inCountry" ;
-<br> 						rdfs:comment		"Subject located in Object." ;
-<br> 						rdfs:domain			my:Location , my:City ;
-<br> 						rdfs:range			my:Country .
+		my:isFamilyMemberOf		a			rdf:predicate ;
 <br>
-<br> 		my:address		a					rdf:predicate ;
-<br> 						rdfs:label			"address" ;
-<br> 						rdfs:comment		"Subject is located at address of Object, as String." ;
-<br> 						rdfs:domain			my:Location ;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
 <br>
-<br> 		my:name			a					rdf:predicate ;
-<br> 						rdfs:label			"name" ;
-<br> 						rdfs:comment		"Subject has name of Object, as String." ;
-<br> 						rdfs:domain			my:Location , my:City , my:Country ;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:label			"isFamilyMemberOf" ;
 <br>
-<br> 		my:fullName		a					rdf:predicate ;
-<br> 						rdfs:label			"fullName" ;
-<br> 						rdfs:comment		"Subject has full name of Object, as String." ;
-<br> 						rdfs:domain			my:University , my:Country ;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:comment		"Subject is a family member of Object." ;
 <br>
-<br> 		my:hasCity		a					rdf:predicate ;
-<br> 						rdfs:label			"hasCity" ;
-<br> 						rdfs:comment		"Subject has city Object." ;
-<br> 						rdfs:domain			my:Country ;
-<br> 						rdfs:range			my:City .
+						rdfs:domain			my:Person ;
 <br>
-<br> 		my:hasOwner		a					rdf:predicate ;
-<br> 						rdfs:label			"hasOwner" ;
-<br> 						rdfs:comment		"Subject is owned by Object" ;
-<br> 						rdfs:domain			my:Pet ;
-<br> 						rdfs:range			my:Person .
+						rdfs:range			my:Person .
+<br><br>
+		my:isParentOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
 <br>
-<br> 		my:hasAuthor	a					rdf:predicate ;
-<br> 						rdfs:label			"hasAuthor" ;
-<br> 						rdfs:comment		"Subject was written by Object" ;
-<br> 						rdfs:domain			my:Novel ;
-<br> 						rdfs:range			my:Person .
+						# since predicates are a subclass of Property, they can have subproperties, I think
 <br>
-<br> 		my:title		a					rdf:predicate ;
-<br> 						rdfs:label			"title" ;
-<br> 						rdfs:comment		"Subject has title Object, as String" ;
-<br> 						rdfs:domain			my:Novel ;
-<br> 						rdfs:range			rdfs:Literal .
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
 <br>
-<br> 		my:isPublished	a					rdf:predicate ;
-<br> 						rdfs:label			"isPublished" ;
-<br> 						rdfs:comment		"Subject is published, as boolean" ;
-<br> 						rdfs:domain			my:Novel ;
-<br> 						rdfs:range			rdfs:Literal .
-
+						rdfs:label			"isParentOf" ;
+<br>
+						rdfs:comment		"Subject is a parent of Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:Person .
+<br><br>
+		my:isChildOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+<br>
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"isChildOf" ;
+<br>
+						rdfs:comment		"Subject is a child of Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:Person .
+<br><br>
+		my:isSiblingOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+<br>
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"isSiblingOf" ;
+<br>
+						rdfs:comment		"Subject is a sibling of Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:Person .
+<br><br>
+		my:isSpouseOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+<br>
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"isSpouseOf" ;
+<br>
+						rdfs:comment		"Subject is married to Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:Person .
+<br><br>
+		my:lastName		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"lastName" ;
+<br>
+						rdfs:comment		"Subject has last name Object, as String." ;
+<br>
+						rdfs:domain			my:Person , my:Pet;
+<br>
+						rdfs:range			rdfs:Literal .
+<br><br>
+		my:isAlumOf		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"isAlumOf" ;
+<br>
+						rdfs:comment		"Subject is an alumnus of Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			rdfs:University .
+<br><br>
+		my:livesIn		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"livesIn" ;
+<br>
+						rdfs:comment		"Subject lives in Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:House .
+<br><br>
+		my:hasPet		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"hasPet" ;
+<br>
+						rdfs:comment		"Subject has pet Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:Pet .
+<br><br><br>
+		# Student predicates
+<br>
+		my:isStudentOf	a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"isStudentOf" ;
+<br>
+						rdfs:comment		"Subject is a Student at Object." ;
+<br>
+						rdfs:domain			my:Person ;
+<br>
+						rdfs:range			my:University .
+<br><br><br>
+		# Place predicates
+<br>
+		my:name			a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"name" ;
+<br>
+						rdfs:comment		"Subject has name of Object, as String." ;
+<br>
+						rdfs:domain			my:Place ;
+<br>
+						rdfs:range			rdfs:Literal .
+<br><br>
+		my:fullName		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"fullName" ;
+<br>
+						rdfs:comment		"Subject has full name of Object, as String." ;
+<br>
+						rdfs:domain			my:Place ;
+<br>
+						rdfs:range			rdfs:Literal .
+<br><br><br>
+		# Location predicates
+<br>
+		my:inCity		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"inCity" ;
+<br>
+						rdfs:comment		"Subject is located in Object." ;
+<br>
+						rdfs:domain			my:Location ;
+<br>
+						rdfs:range			my:City .
+<br><br>
+		my:inCountry	a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"inCountry" ;
+<br>
+						rdfs:comment		"Subject located in Object." ;
+<br>
+						rdfs:domain			my:Location , my:City ;
+<br>
+						rdfs:range			my:Country .
+<br><br>
+		my:address		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"address" ;
+<br>
+						rdfs:comment		"Subject is located at address of Object, as String." ;
+<br>
+						rdfs:domain			my:Location ;
+<br>
+						rdfs:range			rdfs:Literal .
+<br><br>
+		# Country predicates
+<br>
+		my:hasCity		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"hasCity" ;
+<br>
+						rdfs:comment		"Subject has city Object." ;
+<br>
+						rdfs:domain			my:Country ;
+<br>
+						rdfs:range			my:City .
+<br><br><br>
+		# Pet predicates
+<br>
+		my:hasOwner		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"hasOwner" ;
+<br>
+						rdfs:comment		"Subject is owned by Object" ;
+<br>
+						rdfs:domain			my:Pet ;
+<br>
+						rdfs:range			my:Person .
+<br><br>
+		# Novel predicates
+<br>
+		my:hasAuthor	a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"hasAuthor" ;
+<br>
+						rdfs:comment		"Subject was written by Object" ;
+<br>
+						rdfs:domain			my:Novel ;
+<br>
+						rdfs:range			my:Person .
+<br><br>
+		my:title		a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"title" ;
+<br>
+						rdfs:comment		"Subject has title Object, as String" ;
+<br>
+						rdfs:domain			my:Novel ;
+<br>
+						rdfs:range			rdfs:Literal .
+<br><br>
+		my:isPublished	a					rdf:predicate ;
+<br>
+						rdfs:isDefinedBy 	&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; ;
+<br>
+						rdfs:label			"isPublished" ;
+<br>
+						rdfs:comment		"Subject is published, as boolean" ;
+<br>
+						rdfs:domain			my:Novel ;
+<br>
+						rdfs:range			rdfs:Literal .
+<br><br>
   	</p>
   </body>
