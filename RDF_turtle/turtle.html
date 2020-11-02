@@ -5,494 +5,234 @@
   </head>
   <body>
   	<p>
-		# sets up prefixes
-<br>
-<br>
-<br>
-		@prefix rdf:	&#60; http://www.w3.org/1999/02/22-rdf-syntax-ns# &#62; .
-<br>
-<br>
-<br>
-		@prefix rdfs:	&#60; http://www.w3.org/2000/01/rdf-schema# &#62; .
-<br>
-<br>
-<br>
-		@prefix owl:	&#60; http://www.w3.org/2002/07/owl# &#62; .
-<br>
-<br>
-<br>
-		@prefix foaf:	&#60; http://xmlns.com/foaf/0.1/ &#62; .
-<br>
-<br><br>
-<br>
-		@prefix my:		&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; .
-<br>
-<br><br><br>
-<br>
 
-<br>
-# sets up classes
-<br>
-my:LivingThing	a					rdfs:Class ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"LivingThing" ;
-<br>
-				rdfs:comment		"Subject is a Living Thing." .
-<br>
-
-<br>
-my:Place		a					rdfs:Class ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Place" ;
-<br>
-				rdfs:comment		"Subject is a Place." .
-<br>
-
-<br>
-my:Novel		a					rdfs:Class ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Novel" ;
-<br>
-				rdfs:comment		"Subject is a Novel." .
-<br>
-
-<br>
-my:Person		rdfs:subClassOf		my:LivingThing ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Person" ;
-<br>
-				rdfs:comment		"Subject is a LivingThing:Person." .
-<br>
-
-<br>
-my:Student		rdfs:subClassOf		my:Person ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Student" ;
-<br>
-				rdfs:comment		"Subject is a LivingThing:Person:Student." .
-<br>
-
-<br>
-my:Location		rdfs:subClassOf		my:Place ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Location" ;
-<br>
-				rdfs:comment		"Subject is a Place:Location." .
-<br>
-
-<br>
-my:University	rdfs:subClassOf		my:Location ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"University" ;
-<br>
-				rdfs:comment		"Subject is a Place:Location:University." .
-<br>
-
-<br>
-my:House		rdfs:subClassOf		my:Location ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"House" ;
-<br>
-				rdfs:comment		"Subject is a Place:Location:House." .
-<br>
-
-<br>
-my:City			rdfs:subClassOf		my:Place ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"City" ;
-<br>
-				rdfs:comment		"Subject is a Place:City." .
-<br>
-
-<br>
-my:Country		rdfs:subClassOf		my:Place ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Country" ;
-<br>
-				rdfs:comment		"Subject is a Place:Country." .
-<br>
-
-<br>
-my:Pet			rdfs:subClassOf		my:LivingThing ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Pet" ;
-<br>
-				rdfs:comment		"Subject is a LivingThing:Pet." .
-<br>
-
-<br>
-my:Rabbit		rdfs:subClassOf		my:Pet ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"Rabbit" ;
-<br>
-				rdfs:comment		"Subject is a LivingThing:Pet:Rabbit." .
-<br>
-
-<br>
-
-<br>
-# sets up predicates
-<br>
-
-<br>
-# LivingThing predicates
-<br>
-my:dateOfBirth	a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"dateOfBirth" ;
-<br>
-				rdfs:comment		"Subject was born Object, as Date." ;
-<br>
-				rdfs:domain			my:LivingThing ;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-my:firstName	a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"firstName" ;
-<br>
-				rdfs:comment		"Subject has first name Object, as String." ;
-<br>
-				rdfs:domain			my:LivingThing;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-
-<br>
-# Person predicates
-<br>
-my:isFamilyMemberOf		a			rdf:predicate ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"isFamilyMemberOf" ;
-<br>
-				rdfs:comment		"Subject is a family member of Object." ;
-<br>
-				rdfs:domain			my:Person ; # subject must be type my:person
-<br>
-				rdfs:range			my:Person . # object must be type my:person
-<br>
-
-<br>
-my:isParentOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
-<br>
-				# since predicates are a subclass of Property, they can have subproperties, I think
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"isParentOf" ;
-<br>
-				rdfs:comment		"Subject is a parent of Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:Person .
-<br>
-
-<br>
-my:isChildOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"isChildOf" ;
-<br>
-				rdfs:comment		"Subject is a child of Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:Person .
-<br>
-
-<br>
-my:isSiblingOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"isSiblingOf" ;
-<br>
-				rdfs:comment		"Subject is a sibling of Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:Person .
-<br>
-
-<br>
-my:isSpouseOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"isSpouseOf" ;
-<br>
-				rdfs:comment		"Subject is married to Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:Person .
-<br>
-
-<br>
-my:lastName		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy	my: ;
-<br>
-				rdfs:label			"lastName" ;
-<br>
-				rdfs:comment		"Subject has last name Object, as String." ;
-<br>
-				rdfs:domain			my:Person , my:Pet;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-my:isAlumOf		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"isAlumOf" ;
-<br>
-				rdfs:comment		"Subject is an alumnus of Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			rdfs:University .
-<br>
-
-<br>
-my:livesIn		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"livesIn" ;
-<br>
-				rdfs:comment		"Subject lives in Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:House .
-<br>
-
-<br>
-my:hasPet		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"hasPet" ;
-<br>
-				rdfs:comment		"Subject has pet Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:Pet .
-<br>
-
-<br>
-
-<br>
-# Student predicates
-<br>
-my:isStudentOf	a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"isStudentOf" ;
-<br>
-				rdfs:comment		"Subject is a Student at Object." ;
-<br>
-				rdfs:domain			my:Person ;
-<br>
-				rdfs:range			my:University .
-<br>
-
-<br>
-
-<br>
-# Place predicates
-<br>
-my:name			a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"name" ;
-<br>
-				rdfs:comment		"Subject has name of Object, as String." ;
-<br>
-				rdfs:domain			my:Place ;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-my:fullName		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"fullName" ;
-<br>
-				rdfs:comment		"Subject has full name of Object, as String." ;
-<br>
-				rdfs:domain			my:Place ;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-
-<br>
-# Location predicates
-<br>
-my:inCity		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"inCity" ;
-<br>
-				rdfs:comment		"Subject is located in Object." ;
-<br>
-				rdfs:domain			my:Location ;
-<br>
-				rdfs:range			my:City .
-<br>
-
-<br>
-my:inCountry	a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"inCountry" ;
-<br>
-				rdfs:comment		"Subject located in Object." ;
-<br>
-				rdfs:domain			my:Location , my:City ;
-<br>
-				rdfs:range			my:Country .
-<br>
-
-<br>
-my:address		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"address" ;
-<br>
-				rdfs:comment		"Subject is located at address of Object, as String." ;
-<br>
-				rdfs:domain			my:Location ;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-# Country predicates
-<br>
-my:hasCity		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"hasCity" ;
-<br>
-				rdfs:comment		"Subject has city Object." ;
-<br>
-				rdfs:domain			my:Country ;
-<br>
-				rdfs:range			my:City .
-<br>
-
-<br>
-
-<br>
-# Pet predicates
-<br>
-my:hasOwner		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"hasOwner" ;
-<br>
-				rdfs:comment		"Subject is owned by Object" ;
-<br>
-				rdfs:domain			my:Pet ;
-<br>
-				rdfs:range			my:Person .
-<br>
-
-<br>
-# Novel predicates
-<br>
-my:hasAuthor	a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"hasAuthor" ;
-<br>
-				rdfs:comment		"Subject was written by Object" ;
-<br>
-				rdfs:domain			my:Novel ;
-<br>
-				rdfs:range			my:Person .
-<br>
-
-<br>
-my:title		a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"title" ;
-<br>
-				rdfs:comment		"Subject has title Object, as String" ;
-<br>
-				rdfs:domain			my:Novel ;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
-
-<br>
-my:isPublished	a					rdf:predicate ;
-<br>
-				rdfs:isDefinedBy 	my: ;
-<br>
-				rdfs:label			"isPublished" ;
-<br>
-				rdfs:comment		"Subject is published, as boolean" ;
-<br>
-				rdfs:domain			my:Novel ;
-<br>
-				rdfs:range			rdfs:Literal .
-<br>
+	@prefix rdf:	&#60; http://www.w3.org/1999/02/22-rdf-syntax-ns# &#62; .
+	<br>
+	@prefix rdfs:	&#60; http://www.w3.org/2000/01/rdf-schema# &#62; .
+	<br>
+	@prefix xsd:	&#60; http://www.w3.org/2001/XMLSchema# &#62; .
+	<br>
+	<br>
+	@prefix my:		&#60; https://sastaffo.github.io/RDF_turtle/turtle.html# &#62; .
+	<br>
+	<br>
+	<br>
+	my:LivingThing	a					rdfs:Class ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"LivingThing" ;
+					rdfs:comment		"Subject is a Living Thing." .
+	<br>
+	my:Place		a					rdfs:Class ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Place" ;
+					rdfs:comment		"Subject is a Place." .
+	<br>
+	my:Novel		a					rdfs:Class ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Novel" ;
+					rdfs:comment		"Subject is a Novel." .
+	<br>
+	my:Person		rdfs:subClassOf		my:LivingThing ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Person" ;
+					rdfs:comment		"Subject is a LivingThing:Person." .
+	<br>
+	my:Student		rdfs:subClassOf		my:Person ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Student" ;
+					rdfs:comment		"Subject is a LivingThing:Person:Student." .
+	<br>
+	my:Location		rdfs:subClassOf		my:Place ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Location" ;
+					rdfs:comment		"Subject is a Place:Location." .
+	<br>
+	my:University	rdfs:subClassOf		my:Location ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"University" ;
+					rdfs:comment		"Subject is a Place:Location:University." .
+	<br>
+	my:House		rdfs:subClassOf		my:Location ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"House" ;
+					rdfs:comment		"Subject is a Place:Location:House." .
+	<br>
+	my:City			rdfs:subClassOf		my:Place ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"City" ;
+					rdfs:comment		"Subject is a Place:City." .
+	<br>
+	my:Country		rdfs:subClassOf		my:Place ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Country" ;
+					rdfs:comment		"Subject is a Place:Country." .
+	<br>
+	my:Pet			rdfs:subClassOf		my:LivingThing ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Pet" ;
+					rdfs:comment		"Subject is a LivingThing:Pet." .
+	<br>
+	my:Rabbit		rdfs:subClassOf		my:Pet ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"Rabbit" ;
+					rdfs:comment		"Subject is a LivingThing:Pet:Rabbit." .
+	<br>
+	<br>
+	<br>
+	my:dateOfBirth	a					rdf:predicate ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"dateOfBirth" ;
+					rdfs:comment		"Subject was born Object, as xsd:dateTime." ;
+					rdfs:domain			my:LivingThing ;
+					rdfs:range			xsd:dateTime .
+	<br>
+	my:firstName	a					rdf:predicate ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"firstName" ;
+					rdfs:comment		"Subject has first name Object, as String." ;
+					rdfs:domain			my:LivingThing;
+					rdfs:range			xsd:string .
+	<br>
+	my:isFamilyMemberOf		a			rdf:predicate ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"isFamilyMemberOf" ;
+					rdfs:comment		"Subject is a family member of Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:Person .
+	<br>
+	my:isParentOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"isParentOf" ;
+					rdfs:comment		"Subject is a parent of Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:Person .
+	<br>
+	my:isChildOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"isChildOf" ;
+					rdfs:comment		"Subject is a child of Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:Person .
+	<br>
+	my:isSiblingOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"isSiblingOf" ;
+					rdfs:comment		"Subject is a sibling of Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:Person .
+	<br>
+	my:isSpouseOf	rdfs:subPropertyOf	my:isFamilyMemberOf ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"isSpouseOf" ;
+					rdfs:comment		"Subject is married to Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:Person .
+	<br>
+	my:lastName		a					rdf:predicate ;
+					rdfs:isDefinedBy	my: ;
+					rdfs:label			"lastName" ;
+					rdfs:comment		"Subject has last name Object, as String." ;
+					rdfs:domain			my:Person , my:Pet;
+					rdfs:range			xsd:string .
+	<br>
+	my:isAlumOf		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"isAlumOf" ;
+					rdfs:comment		"Subject is an alumnus of Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			rdfs:University .
+	<br>
+	my:livesIn		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"livesIn" ;
+					rdfs:comment		"Subject lives in Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:House .
+	<br>
+	my:hasPet		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"hasPet" ;
+					rdfs:comment		"Subject has pet Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:Pet .
+	<br>
+	my:isStudentOf	a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"isStudentOf" ;
+					rdfs:comment		"Subject is a Student at Object." ;
+					rdfs:domain			my:Person ;
+					rdfs:range			my:University .
+	<br>
+	my:name			a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"name" ;
+					rdfs:comment		"Subject has name of Object, as String." ;
+					rdfs:domain			my:Place ;
+					rdfs:range			xsd:string .
+	<br>
+	my:fullName		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"fullName" ;
+					rdfs:comment		"Subject has full name of Object, as String." ;
+					rdfs:domain			my:Place ;
+					rdfs:range			xsd:string .
+	<br>
+	my:inCity		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"inCity" ;
+					rdfs:comment		"Subject is located in Object." ;
+					rdfs:domain			my:Location ;
+					rdfs:range			my:City .
+	<br>
+	my:inCountry	a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"inCountry" ;
+					rdfs:comment		"Subject located in Object." ;
+					rdfs:domain			my:Location , my:City ;
+					rdfs:range			my:Country .
+	<br>
+	my:address		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"address" ;
+					rdfs:comment		"Subject is located at address of Object, as String." ;
+					rdfs:domain			my:Location ;
+					rdfs:range			xsd:string .
+	<br>
+	my:hasCity		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"hasCity" ;
+					rdfs:comment		"Subject has city Object." ;
+					rdfs:domain			my:Country ;
+					rdfs:range			my:City .
+	<br>
+	my:hasOwner		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"hasOwner" ;
+					rdfs:comment		"Subject is owned by Object" ;
+					rdfs:domain			my:Pet ;
+					rdfs:range			my:Person .
+	<br>
+	my:hasAuthor	a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"hasAuthor" ;
+					rdfs:comment		"Subject was written by Object" ;
+					rdfs:domain			my:Novel ;
+					rdfs:range			my:Person .
+	<br>
+	my:title		a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"title" ;
+					rdfs:comment		"Subject has title Object, as String" ;
+					rdfs:domain			my:Novel ;
+					rdfs:range			xsd:string .
+	<br>
+	my:isPublished	a					rdf:predicate ;
+					rdfs:isDefinedBy 	my: ;
+					rdfs:label			"isPublished" ;
+					rdfs:comment		"Subject is published, as boolean" ;
+					rdfs:domain			my:Novel ;
+					rdfs:range			xsd:boolean .
+	<br>
   	</p>
   </body>
 </html>
